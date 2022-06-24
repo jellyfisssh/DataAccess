@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import { Button, Container,  Col,  } from 'react-bootstrap';
  
-import './StudentLoginPage.css'
-function StudentLoginPage() {
+import './LoginPage.css'
+function LoginPage({role}) {
   const [username, setUsername ] = useState()
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
@@ -12,11 +12,12 @@ function StudentLoginPage() {
 
     e.preventDefault();
  
-    //call api auth endpint 
+    //call api auth endpint pass in {role}
+  
   }
   return (
     <Container fluid className="container" >
-     <Col ><h1 className="title" >welcome student!</h1></Col>
+     <Col ><h1 className="title" >Welcome {role}!</h1></Col>
      <form onSubmit={ onSubmit }>
         <label>Username</label>
         <br />
@@ -46,9 +47,9 @@ function StudentLoginPage() {
           type='text'
           value={password}
           onChange={e => setPassword(e.target.value)}
-        />
+        /> 
         <br/>
-        <Button variant='success' className="btn" type='submit' >Login</Button>
+        <Button variant='success' className="btn" type='submit' >Login as {role} </Button>
       </form>
       {/* this part is for testing only  */}
       <div>{username}</div>
@@ -59,4 +60,4 @@ function StudentLoginPage() {
   )
 }
 
-export default StudentLoginPage
+export default LoginPage

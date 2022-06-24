@@ -14,9 +14,9 @@ function HomePage() {
        <Col >
        <NavLink type="button" className="btn" to="/login/student">Log in as student</NavLink>
         
-         <NavLink type="button" className="btn" to="/login/admin">Log in as Administrators</NavLink>
+         <NavLink type="button" className="btn" to="/login/admin">Log in as administrator </NavLink>
   
-         <NavLink type="button" className="btn" to="/login/tutor">Log in as Tutors</NavLink>
+         <NavLink type="button" className="btn" to="/login/tutor">Log in as tutor </NavLink>
         </Col> 
   </Container>  
      
