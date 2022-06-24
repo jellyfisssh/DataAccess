@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 4rem;
+   
+}
+
+.title {
+  font-size: 5rem;
+  width: 40rem;
+  text-align: center;
+}
+
+.caption {
+  font-size: 1rem;
+  color: #828282;
+  text-align: center;
+  margin-bottom: 5rem;
+  margin-top: 1rem;
+}
+
+.btn:link {
+  
+   margin-right: 2rem;
+  margin-left: 1rem;
+  color: rgb(179, 176, 176);
+ width: 15rem;
+ height: 3rem;
+ padding-top: .6rem;
+ background-color:greenyellow;
+  
+
+}
+.btn:visited {
+  color:  rgb(179, 176, 176);
+}
+ 
