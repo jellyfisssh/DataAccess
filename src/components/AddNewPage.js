@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Button, Container,  Col,  } from 'react-bootstrap';
  
  
-function AddNewPage({role}) {
+function AddNewPage() {
   const [category, setCategory ] = useState()
   const [type, setType] = useState()
   const [name, setName] = useState()
@@ -12,7 +12,7 @@ function AddNewPage({role}) {
 
     e.preventDefault();
  
-    //call api auth endpint pass in {role}
+    //call api endpint  
   
   }
   return (
@@ -21,13 +21,12 @@ function AddNewPage({role}) {
      <form onSubmit={ onSubmit }>
         <label>Category *</label>
         <br />
-        <input 
-          className="input"
-          name='category' 
-          type='text'
-          value={category}
-          onChange={e => setCategory(e.target.value)}
-        />
+      
+        <select className="input" value={category}  onChange={e => setCategory(e.target.value)}>
+          <option value="grapefruit">Arts</option>
+          <option value="lime">Mathematics</option>
+          <option  value="coconut">Technology</option>
+        </select>
         <br/>
         <label>Type *</label>
         <br />
