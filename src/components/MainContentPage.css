@@ -34,4 +34,14 @@
  text-decoration: none;
 color: black;
 }
+
+.edit-link {
+  position: absolute;
+  right: 5rem;
+  left: auto;
+  width: 25%;
+  text-decoration: none;
+ color: black;
+ }
+  
  

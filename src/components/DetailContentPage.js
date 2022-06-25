@@ -24,10 +24,15 @@ function DetailContentPage() {
     <Container style={{width: '60rem'}}>
      <h1>{MOCK_DATA.Type} - {MOCK_DATA.Name}</h1>
              {/* testing only */}
-       {title && <h1>{title}</h1>  }
+       {title && <h1 style={{color: 'gray'}}>{title}</h1>  }
+
      {Object.keys(MOCK_DATA).map((key ) => ( 
       <>
-      <h2>{key}</h2>
+     <div style={{width: '20%', 
+       backgroundColor: 'lightgray',
+      textAlign: 'center', 
+      marginBottom: '1rem', 
+      borderRadius: '3px'}}> <h2>{key}</h2></div>
       <p>{MOCK_DATA[key]}</p>
       </>
       ))}

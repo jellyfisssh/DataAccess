@@ -25,7 +25,7 @@ function MainContentPage({role}) {
       <div className='content'>
         <h3>{item.name} - {item.type}</h3>
         <p style={{margin: '0.5rem'}}>{(item.about).substring(0,50)} ......</p>
-      { (role !== 'Student' ) && <button>Edit</button> }
+      { (role !== 'Student' ) && <Link className='edit-link' to='/add-new'>Edit</Link> }
 
        <Link className='see-more' to={`/detail-content/${item.name}`} >See More</Link>  
       </div>
