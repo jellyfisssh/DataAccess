@@ -1,6 +1,4 @@
-Data Access project 
-
-## Available Scripts
+## Data Access project 
 
 In the project directory, you can run:
 
