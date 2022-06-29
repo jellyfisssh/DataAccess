@@ -3,21 +3,22 @@ const mongoose = require("mongoose");
 const articleSchema = {
     category: String,
     type: String,
-    name: String,
-    born: String,
-    died: String,
-    nationality: String,
-    known_for: String,
-    notable_work: String,
-    about: String,
-    year: String,
-    medium: String,
-    dimensions: String,
-    location: String,
-    designed_by: String,
-    developer: String
+    name: String
 }
 
 const Article = mongoose.model("Article", articleSchema);
 
 module.exports = Article;
+
+    // Born: String,
+    // Died: String,
+    // Nationality: String,
+    // KnownFor: String,
+    // NotableWork: String,
+    // About: String,
+    // Year: String,
+    // Medium: String,
+    // Dimensions: String,
+    // Location: String,
+    // DesignedBy: String,
+    // Developer: String
