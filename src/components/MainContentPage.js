@@ -9,7 +9,19 @@ function MainContentPage({role}) {
   const [articles, setArticles] = useState([{
     category: '',
     type: '',
-    name: ''
+    name: '',
+    born: '',
+    died: '',
+    nationality: '',
+    known_for: '',
+    notable_work: '',
+    about: '',
+    year: '',
+    medium: '',
+    dimensions: '',
+    location: '',
+    designed_by: '',
+    developer: ''
   }])
 
   useEffect(() => {
@@ -19,29 +31,20 @@ function MainContentPage({role}) {
       }
     }).then(jsonRes => setArticles(jsonRes));
   })
-//   const MOCK_DATA = [{
-//      name: 'Euclid',
-//      type: 'Biography',
-//      about : 'Euclid, sometimes given the name Euclid of Alexandria to distinguish him from Euclides of Megara, was a ....',
-
-//   },
-//   {
-//     name: 'Euclid',
-//     type: 'Biography',
-//     about : 'Euclid, sometimes given the name Euclid of Alexandria to distinguish him from Euclides of Megara, was a ....',
-
-//  }]
-
 
   return (
     <Container>
     <div className="top-container"> 
-    <div><input 
-    placeholder="Enter a category or keyword to search..."
-     className="search"
-    onChange={event => setQuery(event.target.value)}
-     /></div>  
-   {  (role === 'Administrator' ) && <Link to='/add-new' className='add-new'>Add New</Link>}
+      <div>
+        <input 
+        placeholder="Enter a category or keyword to search..."
+        className="search"
+        onChange={event => setQuery(event.target.value)}
+        />
+      </div>
+      <div>
+        {  (role === 'Administrator' ) && <Link to='/add-new' className='add-new'>Add New</Link>}
+      </div> 
     </div>
     
   { articles.filter(item => {
@@ -56,12 +59,14 @@ function MainContentPage({role}) {
   }
  }).map((item) => (
       <div className='content'>
-        <h3>{item.category} - {item.type}</h3>
-
-        {/* <p style={{margin: '0.5rem'}}>{(item.about).substring(0,50)} ......</p> */}
-      { (role !== 'Student' ) && <Link className='edit-link' to='/add-new'>Edit</Link> }
-
-       <Link className='see-more' to={`/detail-content/${item.name}`} >See More</Link>  
+        <h2>{item.name}</h2>
+        <div className='innerContent'>
+          <h5>Category: {item.category}<br/> Type: {item.type}</h5>
+          <div>
+          { (role !== 'Student' ) && <Link className='edit-link' to='/add-new'>Edit</Link> }
+          <Link className='see-more' to={`/detail-content/${item.name}`} >See More</Link> 
+          </div>
+       </div> 
       </div>
       
     ))}
