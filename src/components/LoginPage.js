@@ -4,7 +4,6 @@ import { Button, Container,  Col,  } from 'react-bootstrap';
 import './LoginPage.css'
 function LoginPage({role}) {
   const [username, setUsername ] = useState()
-  const [email, setEmail] = useState()
   const [password, setPassword] = useState()
 
    
@@ -12,7 +11,7 @@ function LoginPage({role}) {
 
     e.preventDefault();
  
-    //call api auth endpint pass in {role}
+    //call api auth endpoint pass in {role}
   
   }
   return (
@@ -29,16 +28,6 @@ function LoginPage({role}) {
           onChange={e => setUsername(e.target.value)}
         />
         <br/>
-        <label>Email</label>
-        <br />
-        <input 
-         className="input"
-          name='email' 
-          type='text' 
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
-        <br />
         <label>Password</label>
         <br />
         <input
@@ -53,7 +42,6 @@ function LoginPage({role}) {
       </form>
       {/* this part is for testing only  */}
       <div>{username}</div>
-      <div>{email}</div>
       <div>{password}</div>
      
   </Container>  

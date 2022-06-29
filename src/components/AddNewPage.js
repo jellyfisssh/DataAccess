@@ -1,20 +1,37 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 import { Button, Container,  Col,  } from 'react-bootstrap';
+import axios from "axios";
  
  
 function AddNewPage() {
-  const [category, setCategory ] = useState()
-  const [type, setType] = useState()
-  const [name, setName] = useState()
+  const [input, setInput] = useState({
+    category: '',
+    type: '',
+    name: ''
+  })
 
-   
-  const onSubmit = (e) => {
+  function handleChange(e) {
+    const {name, value} = e.target;
 
-    e.preventDefault();
- 
-    //call api endpint  
-  
+    setInput(prevInput => {
+      return {
+        ...prevInput,
+        [name]: value
+      }
+    })
   }
+
+   const onSubmit = (e) => {
+    e.preventDefault();
+    const newArticle = {
+      category: input.category,
+      type: input.type,
+      name: input.name
+    }
+
+    axios.post('http://localhost:3001/add-new, newArticle')
+  }
+
   return (
     <Container fluid className="container" >
      <Col ><h1 className="title" >Add New Resource</h1></Col>
@@ -22,10 +39,10 @@ function AddNewPage() {
         <label>Category *</label>
         <br />
       
-        <select className="input" value={category}  onChange={e => setCategory(e.target.value)}>
-          <option value="grapefruit">Arts</option>
-          <option value="lime">Mathematics</option>
-          <option  value="coconut">Technology</option>
+        <select className="input" name='category' value={input.category}  onChange={handleChange}>
+          <option value="arts">Arts</option>
+          <option value="mathematics">Mathematics</option>
+          <option  value="technology">Technology</option>
         </select>
         <br/>
         <label>Type *</label>
@@ -34,8 +51,8 @@ function AddNewPage() {
          className="input"
           name='type' 
           type='text' 
-          value={type}
-          onChange={e => setType(e.target.value)}
+          value={input.type}
+          onChange={handleChange}
         />
         <br />
         <label>Name *</label>
@@ -44,8 +61,8 @@ function AddNewPage() {
          className="input"
           name='name' 
           type='text'
-          value={name}
-          onChange={e => setName(e.target.value)}
+          value={input.name}
+          onChange={handleChange}
         /> 
         <br/>
         <Button variant='success' className="btn" type='submit' >Add New Resource </Button>
