@@ -29,7 +29,7 @@ function AddNewPage() {
       name: input.name
     }
 
-    axios.post('http://localhost:3001/add-new, newArticle')
+    axios.post('http://localhost:3001/add-new', newArticle)
   }
 
   return (

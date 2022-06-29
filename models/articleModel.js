@@ -1,9 +1,15 @@
 const mongoose = require("mongoose");
 
 const articleSchema = {
-    Category: String,
-    Type: String,
-    Name: String
+    category: String,
+    type: String,
+    name: String
+}
+
+const Article = mongoose.model("Article", articleSchema);
+
+module.exports = Article;
+
     // Born: String,
     // Died: String,
     // Nationality: String,
@@ -16,8 +22,3 @@ const articleSchema = {
     // Location: String,
     // DesignedBy: String,
     // Developer: String
-}
-
-const Article = mongoose.model("Article", articleSchema);
-
-module.exports = Article;
