@@ -15,4 +15,9 @@ router.route("/add-new").post((req, res) => {
     newArticle.save();
 })
 
+router.route("/main-content").get((req, res) => {
+    Article.find()
+    .then(foundArticles => res.json(foundArticles))
+})
+
 module.exports = router;
