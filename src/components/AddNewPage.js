@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { withRouter } from 'react-router-dom';
 import { Button, Container,  Col,  } from 'react-bootstrap';
 import axios from "axios";
  
@@ -34,7 +35,6 @@ function AddNewPage() {
   }
 
    const onSubmit = (e) => {
-    e.preventDefault();
     const newArticle = {
       category: input.category,
       type: input.type,
@@ -54,6 +54,7 @@ function AddNewPage() {
     }
 
     axios.post('http://localhost:3001/add-new', newArticle)
+
   }
 
   return (
