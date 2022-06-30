@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { withRouter } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Button, Container,  Col,  } from 'react-bootstrap';
 import axios from "axios";
  
@@ -209,13 +209,13 @@ function AddNewPage() {
           value={input.developer}
           onChange={handleChange}
         /> 
-         <br />
-        <Button variant='success' className="btn" type='submit' >Save </Button>
         <br />
-        <br />
+        <Button variant='success' className="btn" type='submit' >Save</Button>
       </form>
-      
-     
+      <NavLink to='/main-content/admin' >
+          <Button variant='primary' className="btn" >Back</Button>
+      </NavLink>
+      <br/>
   </Container>  
   )
 }
