@@ -1,36 +1,31 @@
 import React, {useEffect, useState} from 'react'
 import { Container } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import server from '../server'
 import './MainContentPage.css'
 
 function MainContentPage({role}) {
   const [query, setQuery] = useState("")
 
-  const [articles, setArticles] = useState([{
-    category: '',
-    type: '',
-    name: '',
-    born: '',
-    died: '',
-    nationality: '',
-    known_for: '',
-    notable_work: '',
-    about: '',
-    year: '',
-    medium: '',
-    dimensions: '',
-    location: '',
-    designed_by: '',
-    developer: ''
-  }])
+  const [articles, setArticles] = useState([])
+
+  const fetchData = async() => {
+   const token = localStorage.getItem('token')
+    const headers = {'Authorization': `Bearer ${token}`}
+     try {
+        server.get('/article', headers).then((response) =>{
+        setArticles(response.data)
+      })
+    
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   useEffect(() => {
-    fetch("/main-content").then(res => {
-      if(res.ok) {
-        return res.json()
-      }
-    }).then(jsonRes => setArticles(jsonRes));
-  })
+   fetchData()
+    
+  },[])
 
   return (
     <Container>
@@ -44,6 +39,7 @@ function MainContentPage({role}) {
       </div>
       <div>
         {  (role === 'Administrator' ) && <Link to='/add-new' className='add-new'>Add New</Link>}
+        
       </div> 
     </div>
     
@@ -67,6 +63,7 @@ function MainContentPage({role}) {
           <Link className='see-more' to={`/detail-content/${item.name}`} >See More</Link> 
           </div>
        </div> 
+      
       </div>
       
     ))}

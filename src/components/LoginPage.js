@@ -1,22 +1,33 @@
 import React, {useState} from 'react'
 import { Button, Container,  Col,  } from 'react-bootstrap';
+import server from '../server'
+import { Navigate } from "react-router-dom";
  
 import './LoginPage.css'
 function LoginPage({role}) {
   const [username, setUsername ] = useState()
   const [password, setPassword] = useState()
-
-   
-  const onSubmit = (e) => {
+  const [redirect, setRedirect] = useState(false);
+  const onSubmit = async (e) => {
 
     e.preventDefault();
  
-    //call api auth endpoint pass in {role}
+    try {
+      const response = await server.post('/signin', {username, password, role});
+    //  localStorage.setItem('token', response.data.token);
+      setRedirect(true);
+    } catch (error) {
+      console.log(error);
+      
+    }
   
   }
   return (
     <Container fluid className="container" >
      <Col ><h1 className="title" >Welcome {role}!</h1></Col>
+     {redirect && (
+          <Navigate to="/main-content/student" replace={true} />
+        )}
      <form onSubmit={ onSubmit }>
         <label>Username</label>
         <br />
