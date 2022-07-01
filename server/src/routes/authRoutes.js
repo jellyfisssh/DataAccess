@@ -24,6 +24,8 @@ router.post('/signin', async (req, res) => {
 
   const user = await User.findOne({username})
   if(!user) return res.status(404).send({error: 'invalid email or password'})
+   if ( user.role !== role ) return res.status(404).send({error: 'wrong login role'})
+   console.log(user.role);
   try {
     await user.comparePassword(password)
     const token = await jwt.sign({userId: user._id}, 'MY_SECRET_KEY')

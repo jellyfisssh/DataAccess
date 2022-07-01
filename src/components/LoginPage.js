@@ -7,7 +7,7 @@ import './LoginPage.css'
 function LoginPage({role}) {
   const [username, setUsername ] = useState()
   const [password, setPassword] = useState()
-  const [redirect, setRedirect] = useState(false);
+  const [redirect, setRedirect] = useState(undefined);
   const onSubmit = async (e) => {
 
     e.preventDefault();
@@ -15,7 +15,7 @@ function LoginPage({role}) {
     try {
       const response = await server.post('/signin', {username, password, role});
     //  localStorage.setItem('token', response.data.token);
-      setRedirect(true);
+      setRedirect(role);
     } catch (error) {
       console.log(error);
       
@@ -25,8 +25,14 @@ function LoginPage({role}) {
   return (
     <Container fluid className="container" >
      <Col ><h1 className="title" >Welcome {role}!</h1></Col>
-     {redirect && (
+     {redirect === 'Student' && (
           <Navigate to="/main-content/student" replace={true} />
+        )}
+        {redirect === 'Administrator' && (
+          <Navigate to="/main-content/admin" replace={true} />
+        )}
+        {redirect === 'Tutor' && (
+          <Navigate to="/main-content/tutor" replace={true} />
         )}
      <form onSubmit={ onSubmit }>
         <label>Username</label>
@@ -51,9 +57,7 @@ function LoginPage({role}) {
         <br/>
         <Button variant='success' className="btn" type='submit' >Login as {role} </Button>
       </form>
-      {/* this part is for testing only  */}
-      <div>{username}</div>
-      <div>{password}</div>
+    
      
   </Container>  
   )

@@ -15,7 +15,7 @@ app.use(authRoutes)
 const mongoUri = 'mongodb+srv://adminuser:whitecliffe@whitecliffecluster.8dhlmba.mongodb.net/Project'
 mongoose.connect(mongoUri)
 app.get('/',requireAuth, (req, res) => {
-  res.send(`your email:`)
+  res.send('connected')
 })
 mongoose.connection.on('connected', () => {
   console.log('connceted to mongo instance');
