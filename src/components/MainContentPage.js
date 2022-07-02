@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import server from '../server'
 import './MainContentPage.css'
 
+
 function MainContentPage({role}) {
   const [query, setQuery] = useState("")
 
@@ -61,6 +62,10 @@ function MainContentPage({role}) {
           <div>
           { (role !== 'Student' ) && <Link className='edit-link' to='/add-new'>Edit</Link> }
           <Link className='see-more' to={`/detail-content/${item.name}`} >See More</Link> 
+         
+          {/* check the server side route for "delete" and set the below route correctly. */}
+          <a className='delete' href={`/delete/${item.name}`} >Delete</a>
+          { (role === 'Administrator' ) &&  <Link className='edit-link' to='/add-new' state={{data: item}} >Edit</Link> }
           </div>
        </div> 
       
