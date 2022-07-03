@@ -1,10 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { NavLink } from 'react-router-dom';
 import { Button, Container,  Col,  } from 'react-bootstrap';
 import axios from "axios";
- 
+
  
 function AddNewPage() {
+  const location = useState();
+  //for delete the article
+
+  const { data } = location.state;
+
   const [input, setInput] = useState({
     category: '',
     type: '',
@@ -53,9 +58,19 @@ function AddNewPage() {
       developer: input.developer
     }
 
-    axios.post('http://localhost:3001/add-new', newArticle)
+    if (!!data){
+      axios.post('http://localhost:3001/add-new', newArticle)  
+    }
+    else{
+      axios.post('http://localhost:3001/add-new', newArticle)
+    }   
 
   }
+
+   //
+   useEffect(() => {
+    !!data && setInput(data)
+  }, []);
 
   return (
     <Container fluid className="container" >
