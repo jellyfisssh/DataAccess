@@ -5,6 +5,7 @@ import LoginPage from './components/LoginPage'
 import DetailContentPage from "./components/DetailContentPage"
 import MainContentPage from "./components/MainContentPage"
 import AddNewPage from "./components/AddNewPage";
+import EditPage from "./components/EditPage";
 import "./App.css";
 
 function App() {
@@ -19,8 +20,9 @@ function App() {
          <Route path="/main-content/student" element={<MainContentPage role='Student' />} />
          <Route path="/main-content/admin" element={<MainContentPage role='Administrator' />} />
          <Route path="/main-content/tutor" element={<MainContentPage role='Tutor' />} />
-         <Route path="/detail-content/:title" element={<DetailContentPage  />} />
+         <Route path="/detail-content/:id" element={<DetailContentPage  />} />
          <Route path="/add-new" element={<AddNewPage  />} />
+         <Route path="/edit/:id" element={<EditPage  />} />
       </Routes>
     </div>
   );
