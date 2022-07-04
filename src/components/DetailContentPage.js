@@ -6,28 +6,18 @@ import server from "../server";
 function DetailContentPage() {
   let { id } = useParams();
 
-  const [article, setArticle] = useState({
-    category: "",
-    type: "",
-    name: "",
-    born: "",
-    died: "",
-    nationality: "",
-    known_for: "",
-    notable_work: "",
-    about: "",
-    year: "",
-    medium: "",
-    dimensions: "",
-    location: "",
-    designed_by: "",
-    developer: "",
-  });
+  const [article, setArticle] = useState({});
 
   function fetchArticle() {
-    server.get("/detail-content/" + id).then((response) => {
-      setArticle(response.data);
-    });
+  
+    try {
+      server.get("/detail-content/" + id).then((response) => {
+        console.log(response.data);
+        setArticle(response.data);
+       });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(() => {

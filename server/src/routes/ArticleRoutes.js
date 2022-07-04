@@ -18,14 +18,12 @@ router.get("/article", async (req, res) => {
 // read specific article route
 router.get("/detail-content/:id", async (req, res) => {
   const id = req.params.id;
-  const result = await Article.findById({ _id: id }, (req, res, err) => {
-    if (!err) {
-      console.log("Article found");
-    } else {
-      console.log(err);
-    }
+  await Article.findById(id, function (err, result) {
+    console.log(result);
+    res.send(result);
+   
   });
-  res.send(result);
+  
 });
 
 // add new article route
