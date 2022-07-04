@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Container, Col } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 import server from "../server";
 
 function EditPage() {
   const navigate = useNavigate();
+  let { id } = useParams();
   const [input, setInput] = useState({
     category: "",
     type: "",
@@ -35,7 +37,8 @@ function EditPage() {
   }
   // "update"
   const onSubmit = (e) => {
-    const newArticle = {
+    e.preventDefault();
+    const updatedArticle = {
       category: input.category,
       type: input.type,
       name: input.name,
@@ -52,8 +55,7 @@ function EditPage() {
       designed_by: input.designed_by,
       developer: input.developer,
     };
-    alert("Article Successfully Updated");
-    server.post("/add-new", newArticle);
+    server.put("/edit/" + id, updatedArticle);
   };
 
   return (
