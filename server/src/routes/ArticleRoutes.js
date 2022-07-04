@@ -8,12 +8,27 @@ const router = express.Router();
 
 //router.use(requireAuth)
 
+// read route
 router.get("/article", async (req, res) => {
   const result = await Article.find({});
 
   res.send(result);
 });
 
+// read specific article route
+router.get("/detail-content/:id", async (req, res) => {
+  const id = req.params.id;
+  const result = await Article.findById({ _id: id }, (req, res, err) => {
+    if (!err) {
+      console.log("Article found");
+    } else {
+      console.log(err);
+    }
+  });
+  res.send(result);
+});
+
+// add new article route
 router.route("/add-new").post((req, res) => {
   const category = req.body.category;
   const type = req.body.type;
@@ -52,6 +67,7 @@ router.route("/add-new").post((req, res) => {
   newArticle.save();
 });
 
+// delete article route
 router.delete("/delete/:id", (req, res) => {
   const id = req.params.id;
 
@@ -62,6 +78,39 @@ router.delete("/delete/:id", (req, res) => {
       console.log(err);
     }
   });
+});
+
+//edit article route
+router.put("/edit/:id", (req, res) => {
+  const updatedArticle = {
+    category: req.body.category,
+    type: req.body.type,
+    name: req.body.name,
+    born: req.body.born,
+    died: req.body.died,
+    nationality: req.body.nationality,
+    known_for: req.body.known_for,
+    notable_work: req.body.notable_work,
+    about: req.body.about,
+    year: req.body.year,
+    medium: req.body.medium,
+    dimensions: req.body.dimensions,
+    location: req.body.location,
+    designed_by: req.body.designed_by,
+    developer: req.body.developer,
+  };
+
+  Article.findByIdAndUpdate(
+    { _id: req.params.id },
+    { $set: updatedArticle },
+    (req, res, err) => {
+      if (!err) {
+        console.log("Article updated");
+      } else {
+        console.log(err);
+      }
+    }
+  );
 });
 
 module.exports = router;

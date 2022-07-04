@@ -29,7 +29,7 @@ function MainContentPage({ role }) {
     server.delete("/delete/" + id);
     alert("Article deleted");
     console.log(`Deleted item with id ${id}`);
-    
+    window.location.reload();
   }
 
   return (
@@ -75,22 +75,24 @@ function MainContentPage({ role }) {
               </h5>
               <div>
                 {role !== "Student" && (
-                  <Link className="main-content-link" to="/add-new">
+                  <Link className="main-content-link" to={`/edit/${item._id}`}>
                     Edit
                   </Link>
                 )}
                 <Link
                   className="main-content-link"
-                  to={`/detail-content/${item.name}`}
+                  to={`/detail-content/${item._id}`}
                 >
                   See More
                 </Link>
-                <button
-                  className="main-content-link"
-                  onClick={() => deleteItem(item._id)}
-                >
-                  Delete
-                </button>
+                {role === "Administrator" && (
+                  <button
+                    className="main-content-link"
+                    onClick={() => deleteItem(item._id)}
+                  >
+                    Delete
+                  </button>
+                )}
               </div>
             </div>
           </div>
