@@ -1,15 +1,10 @@
-import React, {useState, useEffect} from 'react';
-import { NavLink } from 'react-router-dom';
+import React, {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button, Container,  Col,  } from 'react-bootstrap';
-import axios from "axios";
-
+import server from '../server';
  
 function AddNewPage() {
-  const location = useState();
-  //for delete the article
-
-  const { data } = location.state;
-
+  const navigate = useNavigate()
   const [input, setInput] = useState({
     category: '',
     type: '',
@@ -58,19 +53,9 @@ function AddNewPage() {
       developer: input.developer
     }
 
-    if (!!data){
-      axios.post('http://localhost:3001/add-new', newArticle)  
-    }
-    else{
-      axios.post('http://localhost:3001/add-new', newArticle)
-    }   
+    server.post('/add-new', newArticle)
 
   }
-
-   //
-   useEffect(() => {
-    !!data && setInput(data)
-  }, []);
 
   return (
     <Container fluid className="container" >
@@ -227,9 +212,7 @@ function AddNewPage() {
         <br />
         <Button variant='success' className="btn" type='submit' >Save</Button>
       </form>
-      <NavLink to='/main-content/admin' >
-          <Button variant='primary' className="btn" >Back</Button>
-      </NavLink>
+        <Button onClick={() => navigate('/main-content/admin')} variant='primary' className="btn" >Back</Button>
       <br/>
   </Container>  
   )
