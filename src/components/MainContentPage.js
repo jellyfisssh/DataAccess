@@ -43,7 +43,7 @@ function MainContentPage({ role }) {
           />
         </div>
         <div>
-          {role === "Administrator" && (
+          {role !== "Student" && (
             <Link to="/add-new" className="add-new">
               Add New
             </Link>
