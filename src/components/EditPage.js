@@ -33,7 +33,7 @@ function EditPage() {
       };
     });
   }
-
+  // "update"
   const onSubmit = (e) => {
     const newArticle = {
       category: input.category,
@@ -52,14 +52,14 @@ function EditPage() {
       designed_by: input.designed_by,
       developer: input.developer,
     };
-
-    server.post("http://localhost:3001/add-new", newArticle);
+    alert("Article Successfully Updated");
+    server.post("/add-new", newArticle);
   };
 
   return (
     <Container fluid className="container">
       <Col>
-        <h1 className="title">Add New Article</h1>
+        <h1 className="title">Edit Article</h1>
       </Col>
       <form onSubmit={onSubmit}>
         <label>Category</label>
@@ -217,7 +217,7 @@ function EditPage() {
         />
         <br />
         <Button variant="success" className="btn" type="submit">
-          Save
+          Save Changes
         </Button>
       </form>
       <Button
