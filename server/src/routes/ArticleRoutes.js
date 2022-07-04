@@ -21,9 +21,7 @@ router.get("/detail-content/:id", async (req, res) => {
   await Article.findById(id, function (err, result) {
     console.log(result);
     res.send(result);
-   
   });
-  
 });
 
 // add new article route
@@ -79,7 +77,8 @@ router.delete("/delete/:id", (req, res) => {
 });
 
 //edit article route
-router.put("/edit/:id", (req, res) => {
+router.put("/edit/:id").put((req, res) => {
+  alert(req);
   const updatedArticle = {
     category: req.body.category,
     type: req.body.type,
@@ -99,13 +98,14 @@ router.put("/edit/:id", (req, res) => {
   };
 
   Article.findByIdAndUpdate(
+    console.log(req),
     { _id: req.params.id },
     { $set: updatedArticle },
     (req, res, err) => {
       if (!err) {
-        console.log("Article updated");
+        alert("Article updated");
       } else {
-        console.log(err);
+        alert(err);
       }
     }
   );
